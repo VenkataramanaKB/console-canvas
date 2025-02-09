@@ -5,7 +5,12 @@
     ],
     "routes": [
       { "src": "/(.*)", "dest": "server.js" }
+    ],
+    "redirects": [
+      {
+        "source": "^/(.*)$",
+        "destination": "https://$1",
+        "permanent": true
+      }
     ]
   }
-  
-  
