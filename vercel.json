@@ -5,13 +5,6 @@
     ],
     "routes": [
       { "src": "/(.*)", "dest": "server.js" }
-    ],
-    "redirects": [
-      {
-        "source": "http://consolecanvas.vercel.app/:path*",
-        "destination": "https://consolecanvas.vercel.app/:path*",
-        "permanent": true
-      }
     ]
   }
   
