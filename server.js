@@ -47,7 +47,7 @@ app.get("/", (req, res) => {
             <body>
                 <h1>Welcome!</h1>
                 <p>This is project is for you to have fun while using your terminal</p>
-                <code>curl consolecanvas.vercel.app/parrot</code>
+                <code>curl -L consolecanvas.vercel.app/parrot</code>
             </body>
         </html>
     `);
@@ -81,7 +81,7 @@ app.get("/parrot", (req, res) => {
                 <body>
                     <h1>Oops!</h1>
                     <p>We are not supported in web,Please run:</p>
-                    <code>curl consolecanvas.vercel.app/parrot</code>
+                    <code>curl -L consolecanvas.vercel.app/parrot</code>
                 </body>
             </html>
         `);
