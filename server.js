@@ -9,7 +9,13 @@ const framesDir = path.join(__dirname, "frames", "parrot");
 
 app.use(express.static("public"));
 
-a
+app.use((req, res, next) => {
+    if (req.headers['x-forwarded-proto'] !== 'https') { // Check if the request is HTTP
+      return res.redirect(301, `https://${req.hostname}${req.originalUrl}`); // Redirect to HTTPS
+    }
+    next(); // Continue to the next middleware/route handler
+});
+
 function getFrames() {
     return fs.readdirSync(framesDir)
         .filter(file => file.endsWith(".txt"))
@@ -41,7 +47,7 @@ app.get("/", (req, res) => {
             <body>
                 <h1>Welcome!</h1>
                 <p>This is project is for you to have fun while using your terminal</p>
-                <code>curl - L consolecanvas.vercel.app/parrot</code>
+                <code>curl consolecanvas.vercel.app/parrot</code>
             </body>
         </html>
     `);
@@ -75,7 +81,7 @@ app.get("/parrot", (req, res) => {
                 <body>
                     <h1>Oops!</h1>
                     <p>We are not supported in web,Please run:</p>
-                    <code>curl -L consolecanvas.vercel.app/parrot</code>
+                    <code>curl consolecanvas.vercel.app/parrot</code>
                 </body>
             </html>
         `);
