@@ -22,38 +22,42 @@ function getFrames() {
         .sort();
 }
 
-
 app.get("/", (req, res) => {
-    return res.send(`
-        <html>
-            <head>
-                <title>Console Canvas</title>
-                <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-                <style>
-                    body {
-                        background-color: black;
-                        color: white;
-                        font-family: Arial, sans-serif;
-                        text-align: center;
-                    }
-                    code {
-                        background-color: #333;
-                        padding: 5px;
-                        border-radius: 5px;
-                        color: #0f0;
-                    }
-                </style>
-            </head>
-            <body>
-                <h1>Welcome!</h1>
-                <p>This is project is for you to have fun while using your terminal</p>
-                <code>curl -L consolecanvas.vercel.app/parrot</code>
-            </body>
-        </html>
-    `);
-    
-    
+    res.setHeader("Content-Type", "text/plain");
+    res.send("Welcome");
 });
+
+// app.get("/", (req, res) => {
+//     return res.send(`
+//         <html>
+//             <head>
+//                 <title>Console Canvas</title>
+//                 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+//                 <style>
+//                     body {
+//                         background-color: black;
+//                         color: white;
+//                         font-family: Arial, sans-serif;
+//                         text-align: center;
+//                     }
+//                     code {
+//                         background-color: #333;
+//                         padding: 5px;
+//                         border-radius: 5px;
+//                         color: #0f0;
+//                     }
+//                 </style>
+//             </head>
+//             <body>
+//                 <h1>Welcome!</h1>
+//                 <p>This is project is for you to have fun while using your terminal</p>
+//                 <code>curl -L consolecanvas.vercel.app/parrot</code>
+//             </body>
+//         </html>
+//     `);
+    
+    
+// });
 
 app.get("/parrot", (req, res) => {
     const userAgent = req.headers["user-agent"] || "";
