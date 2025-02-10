@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Console Canvas</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+        h1, h2, h3 {
+            color: #0f0;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+            text-align: left;
+        }
+        .code-block {
+            background-color: #222;
+            padding: 10px;
+            border-radius: 5px;
+            font-family: monospace;
+            color: #0f0;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        .section {
+            margin-bottom: 30px;
+            padding: 10px;
+            border-left: 3px solid #0f0;
+        }
+        .folder-structure {
+            background-color: #111;
+            padding: 10px;
+            border-radius: 5px;
+            font-family: monospace;
+            color: #fff;
+            text-align: left;
+        }
+        .folder-structure span {
+            color: #0f0;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>🎨 ConsoleCanvas</h1>
+    <p>ConsoleCanvas is an ASCII-based animation API that streams frames over <b>cURL</b>. It transforms text-based frames into a slideshow, bringing ASCII art to life in the terminal.</p>
+
+    <div class="container">
+        
+        <div class="section">
+            <h2>🚀 Getting Started</h2>
+            <p>To run the ASCII animation, simply use:</p>
+            <div class="code-block">curl https://consolecanvas.vercel.app/parrot</div>
+            <div class="code-block">curl -L consolecanvas.vercel.app/parrot</div>
+            <p>📌 <b>Note:</b> This API <b>only works via cURL</b> and is not intended for browser access.</p>
+        </div>
+
+        <div class="section">
+            <h2>📚 Project Structure</h2>
+            <div class="folder-structure">
+                <span>📦 console-canvas</span><br>
+                ├── <span>📁 files</span><br>
+                │&nbsp;&nbsp;&nbsp;&nbsp;├── <span>📁 parrot</span> (Contains ASCII frames)<br>
+                │&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;├── 1.txt<br>
+                │&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;├── 2.txt<br>
+                │&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;├── ...<br>
+                ├── <span>server.js</span><br>
+                ├── <span>vercel.json</span><br>
+                ├── <span>README.md</span><br>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>🤝 Contributing</h2>
+            <p>If you have ASCII frames from a <b>video</b> or an <b>animation</b>, feel free to contribute!</p>
+            <h3>How to Contribute:</h3>
+            <ol>
+                <li>Fork the repository.</li>
+                <li>Add a new folder inside <code>files/</code> with a descriptive name (e.g., <code>files/matrix</code>).</li>
+                <li>Add your ASCII frames (<code>frame1.txt</code>, <code>frame2.txt</code>, ...).</li>
+                <li>Update <code>server.js</code> to support your animation.</li>
+                <li>Submit a pull request! 🎉</li>
+            </ol>
+        </div>
+
+        <div class="section">
+            <h2>🛠️ Running Locally</h2>
+            <p>Follow these steps to run the project on your local machine:</p>
+            <div class="code-block">git clone https://github.com/VenkataramanaKB/console-canvas.git
+cd console-canvas</div>
+            <div class="code-block">npm install</div>
+            <div class="code-block">node server.js</div>
+            <p>Then, in another terminal, test your API:</p>
+            <div class="code-block">curl http://localhost:3000/parrot</div>
+        </div>
+
+        <div class="section">
+            <h2>🐟 License</h2>
+            <p>This project is open-source under the <b>MIT License</b>.</p>
+        </div>
+
+    </div>
+
+</body>
+</html>

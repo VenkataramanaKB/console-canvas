@@ -29,34 +29,8 @@ function getFrames() {
 
 app.get("/", (req, res) => {
     const userAgent = req.headers["user-agent"] || "";
-    if (!userAgent.includes("curl")){
-        return res.send(`
-        <html>
-            <head>
-                <title>Console Canvas</title>
-                <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-                <style>
-                    body {
-                        background-color: black;
-                        color: white;
-                        font-family: Arial, sans-serif;
-                        text-align: center;
-                    }
-                    code {
-                        background-color: #333;
-                        padding: 5px;
-                        border-radius: 5px;
-                        color: #0f0;
-                    }
-                </style>
-            </head>
-            <body>
-                <h1>Welcome!</h1>
-                <p>This is project is for you to have fun while using your terminal</p>
-                <code>curl -L consolecanvas.vercel.app/parrot</code>
-            </body>
-        </html>
-    `);
+    if (!userAgent.includes("curl")){  
+        res.sendFile(path.join(__dirname, "index.html"));
     }
     else{
         res.send('Use [/parrot]');
@@ -67,34 +41,8 @@ app.get("/", (req, res) => {
 app.get("/parrot", (req, res) => {
     const userAgent = req.headers["user-agent"] || "";
     if (!userAgent.includes("curl")) {
-        return res.send(`
-            <html>
-                <head>
-                    <title>Console Canvas</title>
-                    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-                    <style>
-                        body {
-                            background-color: black;
-                            color: white;
-                            font-family: Arial, sans-serif;
-                            text-align: center;
-                        }
-                        code {
-                            background-color: #333;
-                            padding: 5px;
-                            border-radius: 5px;
-                            color: #0f0;
-                        }
-                    </style>
-                </head>
-                <body>
-                    <h1>Oops!</h1>
-                    <p>We are not supported in web,Please run:</p>
-                    <code>curl -L consolecanvas.vercel.app/parrot</code>
-                </body>
-            </html>
-        `);
         
+        res.sendFile(path.join(__dirname, "index.html"));
         
     }
 
