@@ -17,9 +17,17 @@ app.use(express.static("public"));
 // });
 
 function getFrames() {
-    return fs.readdirSync(framesDir)
-        .filter(file => file.endsWith(".txt"))
-        .sort();
+    try{
+        const files = fs.readdirSync(framesDir)
+            .filter(file => file.endsWith(".txt"))
+            .sort();
+        if(files.length===0)
+            console.warn("Warning: No frames are found in ",framesDir)
+        return files;
+    }catch(error){
+        console.error("Error reading frames directory:",error);
+        return [];
+    }
 }
 
 // app.get("/", (req, res) => {
@@ -41,26 +49,39 @@ app.get("/", (req, res) => {
 app.get("/parrot", (req, res) => {
     const userAgent = req.headers["user-agent"] || "";
     if (!userAgent.includes("curl")) {
-        
         res.sendFile(path.join(__dirname, "index.html"));
-        
+        return;
     }
 
+    console.log("Terminal gets Connected");
     res.setHeader("Content-Type", "text/event-stream");
     res.setHeader("Cache-Control", "no-cache");
     res.setHeader("Connection", "keep-alive");
 
     const frames = getFrames();
-    let index = 0;
+    if(frames.length===0){
+        res.write("\n No Frames available.\n");
+        res.end();
+        return;
+    }
 
+    let index = 0;
     const interval = setInterval(() => {
         if (index >= frames.length) index = 0;
-        const content = fs.readFileSync(path.join(framesDir, frames[index]), "utf-8");
-        res.write(`\n\x1Bc${content}\n`);
-        index++;
+        try{
+            const content = fs.readFileSync(path.join(framesDir, frames[index]), "utf-8");
+            res.write(`\n\x1Bc${content}\n`);
+            index++;
+        }catch(error){
+            console.error("Error in reading frame file: ",error)
+            res.write("\nError displaying frames.\n");
+        }
     }, 200);
 
-    req.on("close", () => clearInterval(interval));
+    req.on("close", () =>{
+         clearInterval(interval)
+         console.log("Connection closed in terminal");
+    });
 });
 
 if (require.main === module) {
